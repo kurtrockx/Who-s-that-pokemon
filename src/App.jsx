@@ -18,7 +18,7 @@ export default function App() {
   const [{ message }, dispatch] = useReducer(reducer, initialState);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-slate-400">
+    <div className="flex min-h-screen items-center justify-center bg-slate-500">
       <MainContainer>
         <StartScreen />
       </MainContainer>
@@ -27,11 +27,20 @@ export default function App() {
 }
 
 function MainContainer({ children }) {
-  return <div className="max-w-2xl flex-1 bg-slate-800">{children}</div>;
+  return (
+    <div className="bg-blue-(--color-primary) max-w-2xl flex-1 p-4">
+      {children}
+    </div>
+  );
 }
 
 function StartScreen() {
-  return <div>
-    <img src="public/pokemon-logo.png" alt="" />
-  </div>;
+  return (
+    <div className="flex flex-col space-y-4">
+      <img src="public/pokemon-logo.png" alt="pokemon logo" />
+      <button className="btn-default animate-start-btn mx-auto">
+        Click to Start
+      </button>
+    </div>
+  );
 }

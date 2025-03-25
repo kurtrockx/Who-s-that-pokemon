@@ -1,1 +1,48 @@
 @import "tailwindcss";
+
+@theme {
+  --color-primary: #ffcc00;
+  --color-secondary: #0066b3;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-mono);
+  }
+}
+
+@layer components {
+  .btn-default {
+    all: unset;
+    display: block;
+    padding-block: 0.5rem;
+    padding-inline: 0.75rem;
+    border-radius: 0.5rem;
+
+    font-weight: bold;
+
+    color: var(--color-secondary);
+    background-color: var(--color-primary);
+    border: 0.25rem solid var(--color-secondary);
+
+    cursor: pointer;
+  }
+  .btn-default:hover {
+    filter: brightness(95%);
+  }
+}
+
+@layer utilities {
+  @keyframes start-btn {
+    0% {
+      translate: 0;
+    }
+    50% {
+      translate: 0 -0.5rem;
+      box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.5);
+    }
+  }
+  .animate-start-btn {
+    animation: start-btn 1s ease-in-out infinite;
+  }
+}
