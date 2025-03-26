@@ -10,6 +10,8 @@ const initialState = {
 
 function reducer(state, action) {
   switch (action.type) {
+    case "loading":
+      return { ...state, status: "loading" };
     case "error":
       return { ...state, status: "error" };
     case "ready":
@@ -69,7 +71,7 @@ function StartScreen({ dispatch }) {
   return (
     <div className="flex flex-col space-y-4">
       <img
-        src="public/pokemon-logo.png"
+        src="/pokemon-logo.png"
         alt="pokemon logo"
         className="animate-up-down"
       />
@@ -85,8 +87,6 @@ function StartScreen({ dispatch }) {
 
 function ActiveScreen({ dispatch, pokemon }) {
   useEffect(() => {
-    if (pokemon !== null) return;
-
     const randomNumber = Math.trunc(Math.random() * 1000) + 1;
 
     async function fetchPokemon() {
@@ -96,7 +96,7 @@ function ActiveScreen({ dispatch, pokemon }) {
         );
         if (!res.ok) throw new Error("Could not fetch Pokemon");
         const data = await res.json();
-        console.log(data)
+        console.log(data);
         dispatch({ type: "newPokemon", payload: data });
       } catch (err) {
         console.log(err.message);
@@ -104,7 +104,22 @@ function ActiveScreen({ dispatch, pokemon }) {
     }
 
     fetchPokemon();
-  }, [dispatch, pokemon]);
+  }, [dispatch]);
 
-  return pokemon && <div className="bg-red-800 text-white">{pokemon.name}</div>;
+  return (
+    pokemon && (
+      <div className="flex flex-col justify-center bg-slate-950/5">
+        <div className="mx-auto">
+          <img
+            src={pokemon.sprites.back_default}
+            alt="pokemon_image"
+            className="active:animate-shake"
+          />
+        </div>
+        <div className="flex">
+          <input type="text" className="bg-white outline-0" />
+        </div>
+      </div>
+    )
+  );
 }
