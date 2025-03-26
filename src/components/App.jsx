@@ -6,6 +6,7 @@ import { MainContainer } from "./MainContainer";
 import { ProgressBar } from "./ProgressBar";
 import FinishScreen from "./FinishScreen";
 import HighScore from "./HighScore";
+import ThemeSong from "./ThemeSong";
 
 const initialState = {
   //loading, ready, active, finished, reset
@@ -86,8 +87,9 @@ export default function App() {
   }, []);
 
   return (
-    <div className="flex min-h-dvh items-center justify-center bg-zinc-900">
+    <div className="flex min-h-dvh items-center justify-center overflow-hidden bg-zinc-900">
       <MainContainer>
+        <ThemeSong />
         {status === "loading" && <Loader />}
         {status === "ready" && <StartScreen dispatch={dispatch} />}
         {status === "active" && (
