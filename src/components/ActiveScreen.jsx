@@ -17,7 +17,7 @@ export function ActiveScreen({
     const choices = [];
 
     for (let x = 0; x < NUMBER_OF_CHOICES; x++) {
-      const randomNumber = Math.trunc(Math.random() * pokemon.length);
+      const randomNumber = Math.trunc(Math.random() * pokemon.length) + 1;
 
       x === chosen &&
         choices.push({ ...pokemon[randomNumber], correctAnswer: true });
