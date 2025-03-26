@@ -90,7 +90,7 @@ export default function App() {
     <div className="flex min-h-dvh items-center justify-center overflow-hidden bg-zinc-900">
       <MainContainer>
         <ThemeSong />
-        {status === "loading" && <Loader />}
+        {status === "loading" && <Loader pokemon={pokemon} />}
         {status === "ready" && <StartScreen dispatch={dispatch} />}
         {status === "active" && (
           <>
