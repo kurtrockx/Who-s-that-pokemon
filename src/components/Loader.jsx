@@ -2,13 +2,14 @@ import { useEffect, useRef } from "react";
 
 export function Loader({ pokemon }) {
   const pokeballShake = useRef(null);
+
   useEffect(() => {
     if (pokemon === null) return;
     pokeballShake.current.volume = 0.1;
-    pokeballShake.current.play();
+    pokeballShake.current.play().catch((err) => console.log(err.message));
   }, [pokemon]);
 
-  return ( 
+  return (
     <div className="py-8">
       <p className="text-center text-xl text-white">Loading...</p>
       <div className="loader"></div>

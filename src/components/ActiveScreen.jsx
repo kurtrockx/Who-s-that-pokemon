@@ -19,13 +19,13 @@ export function ActiveScreen({
       try {
         let valid = false;
         let chosen = Math.trunc(Math.random() * NUMBER_OF_CHOICES);
+
         while (valid === false) {
           const res = await fetch(pokemon[chosen].url);
           if (!res.ok) throw new Error("could not fetch the chosen pokemon");
           const data = await res.json();
-
           if (data.sprites.front_default === null) {
-            chosen = Math.trunc(Math.random() * NUMBER_OF_CHOICES);
+            continue;
           } else {
             valid = true;
           }
