@@ -1,12 +1,40 @@
-# React + Vite
+# Who's That Pokémon?
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A fun and interactive web app where you can guess Pokémon based on their silhouettes! Built using Vite, React, and the Pokémon V2 API.
 
-Currently, two official plugins are available:
+## 🚀 Live Demo
+Check it out here: [Who's That Pokémon?](https://whosthatpokemon-kurtrdb.netlify.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🛠️ Technologies Used
+- **Vite** - Fast and optimized development environment
+- **React** - Component-based UI development
+- **Pokémon V2 API** - Fetch Pokémon data dynamically
 
-## Expanding the ESLint configuration
+## 📦 Installation
+To set up the project locally, follow these steps:
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/yourusername/whos-that-pokemon.git
+   cd whos-that-pokemon
+   ```
+2. Install dependencies:
+   ```sh
+   npm install
+   ```
+3. Start the development server:
+   ```sh
+   npm run dev
+   ```
+
+## 📌 Features
+- Random Pokémon to guess (with choices don't worry)
+- Fetches data dynamically from Pokémon V2 API
+- Clean and responsive UI
+
+## 🤝 Contributing
+Pull requests are welcome! Feel free to open an issue if you find a bug or have a feature request.
+
+## 📜 License
+This project is open-source and available under the [MIT License](LICENSE).
+
