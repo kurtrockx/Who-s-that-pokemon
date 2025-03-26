@@ -3,13 +3,13 @@ export function ProgressBar({ level, endLevel, points }) {
     <div>
       <div className="flex justify-between">
         <p className="font-bold text-white">
-          score: <span className="text-primary">{points}</span>
-        </p>
-        <p className="font-bold text-white">
           level:{" "}
           <span className="text-primary">
             {level}/{endLevel}
           </span>
+        </p>
+        <p className="font-bold text-white">
+          score: <span className="text-primary">{points}</span>
         </p>
       </div>
       <progress
