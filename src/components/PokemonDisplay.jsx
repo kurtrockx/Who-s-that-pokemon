@@ -26,9 +26,9 @@ export function PokemonDisplay({ chosenPokemon }) {
       <div className="group relative h-full origin-right overflow-hidden delay-500 duration-200 starting:scale-x-0">
         <img
           src={
-            pokemonData.sprites.other["official-artwork"].front_default ||
-            pokemonData.sprites.front_default ||
-            pokemonData.sprites.back_default
+            pokemonData?.sprites?.other["official-artwork"].front_default ||
+            pokemonData?.sprites?.front_default ||
+            pokemonData?.sprites?.back_default
           }
           alt="pokemon_image"
           className="h-36 cursor-pointer duration-100 hover:scale-105 active:scale-90"
