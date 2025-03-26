@@ -32,7 +32,7 @@ export function ActiveScreen({
 
   return (
     choices !== null && (
-      <div className="flex h-[var(--h-game-container)] max-h-dvh flex-col justify-between gap-2">
+      <div className="flex max-h-dvh flex-col justify-between gap-2">
         <PokemonDisplay chosenPokemon={chosenPokemon} />
         <Choices
           choices={choices}

@@ -4,7 +4,7 @@
   --color-primary: #ffcc00;
   --color-secondary: #0066b3;
 
-  --h-game-container: 420px;
+  --h-game-container: 480px;
 }
 
 @layer base {
@@ -79,15 +79,6 @@
     background-repeat: no-repeat;
     animation: l20 1s infinite cubic-bezier(0.5, 120, 0.5, -120);
   }
-  .loader::before {
-    content: "Loading...";
-    font-size: 2rem;
-
-    inset: unset;
-    top: -80%;
-    left: 50%;
-    translate: -50%;
-  }
   @keyframes l20 {
     30%,
     70% {
@@ -98,6 +89,11 @@
     }
     50% {
       transform: rotate(-0.2deg);
+    }
+  }
+  @media screen and (max-width: 40rem) {
+    .loader::before {
+      display: none;
     }
   }
 }

@@ -29,7 +29,7 @@ export function PokemonDisplay({ chosenPokemon }) {
       <img
         src={pokemonData.sprites.front_default}
         alt="pokemon_image"
-        className="min-h-36 cursor-pointer duration-200 hover:scale-105 active:scale-90"
+        className="min-h-36 cursor-pointer origin-right delay-500 starting:scale-x-0 duration-200 hover:scale-105 active:scale-90"
         onClick={handleCry}
       />
       <PokemonStats stats={pokemonData.stats} />

@@ -3,7 +3,7 @@ import { ActiveScreen } from "./ActiveScreen";
 import { StartScreen } from "./StartScreen";
 import { Loader } from "./Loader";
 import { MainContainer } from "./MainContainer";
-import ProgressBar from "./ProgressBar";
+import { ProgressBar } from "./ProgressBar";
 
 const initialState = {
   //loading, ready, active, finished, reset

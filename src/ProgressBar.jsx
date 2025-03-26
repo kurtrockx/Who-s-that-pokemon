@@ -1,4 +1,4 @@
-function ProgressBar({ level, endLevel, points }) {
+export function ProgressBar({ level, endLevel, points }) {
   return (
     <div>
       <div className="flex justify-between">
@@ -15,10 +15,8 @@ function ProgressBar({ level, endLevel, points }) {
       <progress
         max={endLevel}
         value={level}
-        className="progressBar custom-progress mb-4"
+        className="progressBar custom-progress"
       ></progress>
     </div>
   );
 }
-
-export default ProgressBar;

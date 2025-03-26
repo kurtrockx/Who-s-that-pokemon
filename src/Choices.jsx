@@ -5,6 +5,7 @@ function Choices({ choices, chosenPokemon, dispatch }) {
   const existingAnswer = answer !== null;
 
   function handleNextLevel() {
+    if (answer === null) return;
     dispatch({ type: "nextLevel" });
     setAnswer(null);
   }
@@ -33,11 +34,13 @@ function Choices({ choices, chosenPokemon, dispatch }) {
           {formatName[index]}
         </button>
       ))}
-      {answer && (
-        <button className="btn-default ml-auto w-max" onClick={handleNextLevel}>
-          Next Level
-        </button>
-      )}
+
+      <button
+        className={`btn-default ml-auto w-max ${existingAnswer ? "block" : "cursor-default opacity-0"}`}
+        onClick={handleNextLevel}
+      >
+        Next Level
+      </button>
     </div>
   );
 }
