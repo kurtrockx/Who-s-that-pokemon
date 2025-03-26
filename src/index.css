@@ -34,7 +34,7 @@
   /* HTML: <div class="loader"></div> */
   .loader {
     margin: auto;
-    height: 4rem;
+    height: min(3.5rem, 16vw);
     aspect-ratio: 1;
     position: relative;
   }
@@ -48,7 +48,7 @@
     inset: 0;
     border-radius: 50%;
 
-    border: 0.25rem solid #000;
+    border: 0.2rem solid #000;
     background:
       radial-gradient(at 80% 40%, #0000, #0008),
       radial-gradient(circle 5px, #fff 94%, #0000),
