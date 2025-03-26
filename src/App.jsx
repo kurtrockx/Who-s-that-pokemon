@@ -33,6 +33,8 @@ function reducer(state, action) {
         choices: action.payload[0],
         chosenPokemon: action.payload[1],
       };
+    case "nextLevel":
+      return { ...state, level: state.level + 1 };
     default:
       return { ...state };
   }

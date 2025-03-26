@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
 
-function Choices({ choices, chosenPokemon }) {
+function Choices({ choices, chosenPokemon, dispatch }) {
   const [answer, setAnswer] = useState(null);
- 
+
+  function handleNextLevel() {
+    dispatch({ type: "nextLevel" });
+    setAnswer(null);
+  }
+
   useEffect(() => {
-    
-  }, [answer])
+    if (answer === null) return;
+  }, [answer]);
 
   const formatName = choices
     .map((c) => c.name.split("-").slice(0, 1))
@@ -25,6 +30,11 @@ function Choices({ choices, chosenPokemon }) {
           {formatName[index]}
         </button>
       ))}
+      {answer && (
+        <button className="btn-default ml-auto w-max" onClick={handleNextLevel}>
+          Next Level
+        </button>
+      )}
     </div>
   );
 }

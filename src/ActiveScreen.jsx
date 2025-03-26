@@ -4,7 +4,13 @@ import { Loader } from "./Loader";
 import { PokemonDisplay } from "./PokemonDisplay";
 import Choices from "./Choices";
 
-export function ActiveScreen({ pokemon, dispatch, choices, chosenPokemon, level }) {
+export function ActiveScreen({
+  pokemon,
+  dispatch,
+  choices,
+  chosenPokemon,
+  level,
+}) {
   //Creating choices
   useEffect(() => {
     const chosen = Math.trunc(Math.random() * NUMBER_OF_CHOICES);
@@ -29,7 +35,11 @@ export function ActiveScreen({ pokemon, dispatch, choices, chosenPokemon, level 
   ) : (
     <div className="flex h-[var(--h-game-container)] max-h-dvh flex-col justify-between">
       <PokemonDisplay chosenPokemon={chosenPokemon} />
-      <Choices choices={choices} chosenPokemon={chosenPokemon} />
+      <Choices
+        choices={choices}
+        chosenPokemon={chosenPokemon}
+        dispatch={dispatch}
+      />
     </div>
   );
 }
