@@ -90,6 +90,9 @@ export default function App() {
         {status === "ready" && <StartScreen dispatch={dispatch} />}
         {status === "active" && (
           <>
+            <p className="text-right font-bold text-white">
+              Highscore: <span className="text-primary">{highScore}</span>
+            </p>
             <ProgressBar level={level} endLevel={endLevel} points={points} />
             <ActiveScreen
               pokemon={pokemon}

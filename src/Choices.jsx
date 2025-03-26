@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 
-function Choices({ choices, chosenPokemon, dispatch }) {
+function Choices({ choices, chosenPokemon, dispatch, level }) {
   const [answer, setAnswer] = useState(null);
   const existingAnswer = answer !== null;
 
   function handleNextLevel() {
     if (answer === null) return;
+    if (level === 20) dispatch({ type: "finished" });
     dispatch({ type: "nextLevel" });
     setAnswer(null);
   }

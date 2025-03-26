@@ -38,6 +38,7 @@ export function ActiveScreen({
           choices={choices}
           chosenPokemon={chosenPokemon}
           dispatch={dispatch}
+          level={level}
         />
       </div>
     )
