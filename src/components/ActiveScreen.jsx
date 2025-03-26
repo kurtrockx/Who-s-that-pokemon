@@ -13,21 +13,47 @@ export function ActiveScreen({
 }) {
   //Creating choices
   useEffect(() => {
-    const chosen = Math.trunc(Math.random() * NUMBER_OF_CHOICES);
     const choices = [];
 
-    for (let x = 0; x < NUMBER_OF_CHOICES; x++) {
-      const randomNumber = Math.trunc(Math.random() * pokemon.length) + 1;
+    async function validateChosen() {
+      try {
+        let valid = false;
+        let chosen = Math.trunc(Math.random() * NUMBER_OF_CHOICES);
+        while (valid === false) {
+          const res = await fetch(pokemon[chosen].url);
+          if (!res.ok) throw new Error("could not fetch the chosen pokemon");
+          const data = await res.json();
 
-      x === chosen &&
-        choices.push({ ...pokemon[randomNumber], correctAnswer: true });
-      x !== chosen &&
-        choices.push({ ...pokemon[randomNumber], correctAnswer: false });
+          if (data.sprites.front_default === null) {
+            chosen = Math.trunc(Math.random() * NUMBER_OF_CHOICES);
+          } else {
+            valid = true;
+          }
+        }
+        return chosen;
+      } catch (err) {
+        console.log(err.message);
+      }
     }
-    dispatch({
-      type: "newChoices",
-      payload: [choices, ...choices.filter((c) => c.correctAnswer === true)],
-    });
+
+    async function defineChoices() {
+      const chosen = await validateChosen();
+
+      for (let x = 0; x < NUMBER_OF_CHOICES; x++) {
+        const randomNumber = Math.trunc(Math.random() * pokemon.length);
+
+        x === chosen &&
+          choices.push({ ...pokemon[randomNumber], correctAnswer: true });
+        x !== chosen &&
+          choices.push({ ...pokemon[randomNumber], correctAnswer: false });
+      }
+      dispatch({
+        type: "newChoices",
+        payload: [choices, ...choices.filter((c) => c.correctAnswer === true)],
+      });
+    }
+
+    defineChoices();
   }, [pokemon, dispatch, level]);
 
   return (
