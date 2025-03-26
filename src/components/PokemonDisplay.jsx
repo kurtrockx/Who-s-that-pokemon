@@ -25,7 +25,11 @@ export function PokemonDisplay({ chosenPokemon }) {
     <div className="mx-auto flex h-full items-center gap-2 duration-500 starting:scale-20">
       <div className="group relative h-full origin-right overflow-hidden delay-500 duration-200 starting:scale-x-0">
         <img
-          src={pokemonData.sprites.front_default}
+          src={
+            pokemonData.sprites.front_default
+              ? pokemonData.sprites.front_default
+              : pokemonData.sprites.back_default
+          }
           alt="pokemon_image"
           className="min-h-36 cursor-pointer duration-100 hover:scale-105 active:scale-90"
           onClick={handleCry}

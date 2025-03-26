@@ -1,4 +1,12 @@
+import { useEffect, useRef } from "react";
+
 function FinishScreen({ dispatch, points, highScore }) {
+  const finishAudio = useRef(null);
+
+  useEffect(() => {
+    finishAudio.current.play();
+  }, []);
+
   return (
     <div className="mx-auto max-w-lg">
       <img src="/finish.png" alt="finish" className="animate-up-down" />
@@ -14,6 +22,7 @@ function FinishScreen({ dispatch, points, highScore }) {
       >
         Retry?
       </button>
+      <audio src="/audio/finish.mp3" ref={finishAudio}></audio>
     </div>
   );
 }

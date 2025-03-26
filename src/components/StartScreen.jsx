@@ -1,13 +1,13 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 
 export function StartScreen({ dispatch }) {
-  const whosthatpokemon = useRef(null);
-  useEffect(() => {
-    function playAudio() {
-      whosthatpokemon.current.play();
-    }
-    playAudio();
-  }, []);
+  const startAudio = useRef(null);
+
+  function handleStartAudio() {
+    startAudio.current.play();
+    setTimeout(() => dispatch({ type: "active" }), 600);
+  }
+
   return (
     <div className="flex flex-col space-y-4">
       <img
@@ -22,11 +22,13 @@ export function StartScreen({ dispatch }) {
       />
       <button
         className="btn-default mx-auto w-42 text-center"
-        onClick={() => dispatch({ type: "active" })}
+        onClick={() => {
+          handleStartAudio();
+        }}
       >
         Click to Start
       </button>
-      <audio src="/audio/whosthat.mp3" ref={whosthatpokemon}></audio>
+      <audio src="/audio/start.mp3" ref={startAudio}></audio>
     </div>
   );
 }

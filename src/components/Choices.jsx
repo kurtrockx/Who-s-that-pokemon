@@ -1,8 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function Choices({ choices, chosenPokemon, dispatch, level }) {
   const [answer, setAnswer] = useState(null);
   const existingAnswer = answer !== null;
+
+  const correctAudio = useRef(null);
+  const wrongAudio = useRef(null);
 
   function handleNextLevel() {
     if (answer === null) return;
@@ -12,7 +15,12 @@ function Choices({ choices, chosenPokemon, dispatch, level }) {
   }
 
   useEffect(() => {
+    if (answer !== null && answer !== chosenPokemon) {
+      wrongAudio.current.play();
+      return;
+    }
     if (answer === null || answer !== chosenPokemon) return;
+    correctAudio.current.play();
     dispatch({ type: "plusPoints" });
   }, [answer, chosenPokemon, dispatch]);
 
@@ -36,6 +44,8 @@ function Choices({ choices, chosenPokemon, dispatch, level }) {
         </button>
       ))}
 
+      <audio src="/audio/correct_answer.mp3" ref={correctAudio}></audio>
+      <audio src="/audio/wrong_answer.mp3" ref={wrongAudio}></audio>
       <button
         className={`btn-default ml-auto w-max ${existingAnswer ? "block" : "cursor-default opacity-0"}`}
         onClick={handleNextLevel}
