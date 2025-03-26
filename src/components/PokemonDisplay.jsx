@@ -8,6 +8,7 @@ export function PokemonDisplay({ chosenPokemon }) {
   const pokemonCry = useRef(null);
 
   function handleCry() {
+    pokemonCry.current.volume = 0.4;
     pokemonCry.current.play();
   }
 
@@ -26,9 +27,9 @@ export function PokemonDisplay({ chosenPokemon }) {
       <div className="group relative h-full origin-right overflow-hidden delay-500 duration-200 starting:scale-x-0">
         <img
           src={
-            pokemonData?.sprites?.other["official-artwork"].front_default ||
-            pokemonData?.sprites?.front_default ||
-            pokemonData?.sprites?.back_default
+            pokemonData.sprites.other["official-artwork"].front_default ||
+            pokemonData.sprites.front_default ||
+            pokemonData.sprites.back_default
           }
           alt={
             pokemonData.sprites.front_default
@@ -43,7 +44,14 @@ export function PokemonDisplay({ chosenPokemon }) {
         </p>
       </div>
       <PokemonStats stats={pokemonData.stats} />
-      <audio src={pokemonData.cries.latest} ref={pokemonCry}></audio>
+      <audio
+        src={
+          pokemonData.cries.latest
+            ? pokemonData.cries.latest
+            : pokemonData.cries.legacy
+        }
+        ref={pokemonCry}
+      ></audio>
     </div>
   );
 }
