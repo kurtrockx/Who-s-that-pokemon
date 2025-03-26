@@ -3,11 +3,13 @@ import { ActiveScreen } from "./ActiveScreen";
 import { StartScreen } from "./StartScreen";
 import { Loader } from "./Loader";
 import { MainContainer } from "./MainContainer";
+import ProgressBar from "./ProgressBar";
 
 const initialState = {
   //loading, ready, active, finished, reset
   status: "loading",
   level: 1,
+  endLevel: 20,
   points: 0,
   highScore: 10,
 
@@ -51,8 +53,10 @@ function reducer(state, action) {
 }
 
 export default function App() {
-  const [{ level, status, pokemon, choices, chosenPokemon }, dispatch] =
-    useReducer(reducer, initialState);
+  const [
+    { level, status, pokemon, choices, chosenPokemon, endLevel, points },
+    dispatch,
+  ] = useReducer(reducer, initialState);
 
   useEffect(() => {
     fetch("https://pokeapi.co/api/v2/pokemon?limit=100000")
@@ -69,13 +73,16 @@ export default function App() {
         {status === "loading" && <Loader />}
         {status === "ready" && <StartScreen dispatch={dispatch} />}
         {status === "active" && (
-          <ActiveScreen
-            pokemon={pokemon}
-            dispatch={dispatch}
-            choices={choices}
-            chosenPokemon={chosenPokemon}
-            level={level}
-          />
+          <>
+            <ProgressBar level={level} endLevel={endLevel} points={points} />
+            <ActiveScreen
+              pokemon={pokemon}
+              dispatch={dispatch}
+              choices={choices}
+              chosenPokemon={chosenPokemon}
+              level={level}
+            />
+          </>
         )}
       </MainContainer>
     </div>

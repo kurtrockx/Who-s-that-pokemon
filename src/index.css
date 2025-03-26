@@ -37,6 +37,21 @@
     scale: 95%;
   }
 
+  .progressBar {
+    width: 100%;
+  }
+
+  ::-webkit-progress-bar {
+    background: var(--color-secondary);
+    background: white;
+    border-radius: 1rem;
+
+    overflow: hidden;
+  }
+  ::-webkit-progress-value {
+    background: var(--color-secondary);
+  }
+
   /* HTML: <div class="loader"></div> */
   .loader {
     margin: auto;
