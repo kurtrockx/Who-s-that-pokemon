@@ -5,6 +5,7 @@ import { Loader } from "./Loader";
 import { MainContainer } from "./MainContainer";
 import { ProgressBar } from "./ProgressBar";
 import FinishScreen from "./FinishScreen";
+import HighScore from "./HighScore";
 
 const initialState = {
   //loading, ready, active, finished, reset
@@ -91,9 +92,7 @@ export default function App() {
         {status === "ready" && <StartScreen dispatch={dispatch} />}
         {status === "active" && (
           <>
-            <p className="text-right font-bold text-white">
-              Highscore: <span className="text-primary">{highScore}</span>
-            </p>
+            <HighScore points={points} highScore={highScore} />
             <ProgressBar level={level} endLevel={endLevel} points={points} />
             <ActiveScreen
               pokemon={pokemon}

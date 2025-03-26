@@ -1,4 +1,13 @@
+import { useEffect, useRef } from "react";
+
 export function StartScreen({ dispatch }) {
+  const whosthatpokemon = useRef(null);
+  useEffect(() => {
+    function playAudio() {
+      whosthatpokemon.current.play();
+    }
+    playAudio();
+  }, []);
   return (
     <div className="flex flex-col space-y-4">
       <img
@@ -17,6 +26,7 @@ export function StartScreen({ dispatch }) {
       >
         Click to Start
       </button>
+      <audio src="/audio/whosthat.mp3" ref={whosthatpokemon}></audio>
     </div>
   );
 }

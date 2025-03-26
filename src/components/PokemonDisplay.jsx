@@ -15,10 +15,7 @@ export function PokemonDisplay({ chosenPokemon }) {
     if (chosenPokemon === null) return;
     fetch(chosenPokemon.url)
       .then((res) => res.json())
-      .then((data) => {
-        setPokemonData(data);
-        console.log(data);
-      })
+      .then((data) => setPokemonData(data))
       .catch((err) => console.log(err.message));
   }, [chosenPokemon]);
 
