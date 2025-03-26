@@ -24,11 +24,15 @@
     color: var(--color-primary);
     background-color: var(--color-secondary);
     border: 0.25rem solid var(--color-primary);
+    transition: scale 0.2s ease;
 
     cursor: pointer;
   }
   .btn-default:hover {
     filter: brightness(95%);
+  }
+  .btn-default:active {
+    scale: 95%;
   }
 
   /* HTML: <div class="loader"></div> */

@@ -1,4 +1,8 @@
 import { useEffect, useReducer } from "react";
+import { ActiveScreen } from "./ActiveScreen";
+import { StartScreen } from "./StartScreen";
+import { Loader } from "./Loader";
+import { MainContainer } from "./MainContainer";
 
 const initialState = {
   //loading, ready, active, finished, reset
@@ -6,7 +10,11 @@ const initialState = {
   level: 1,
 
   pokemon: null,
+  choices: null,
+  chosenPokemon: null,
 };
+
+export const NUMBER_OF_CHOICES = 4;
 
 function reducer(state, action) {
   switch (action.type) {
@@ -14,30 +22,30 @@ function reducer(state, action) {
       return { ...state, status: "loading" };
     case "error":
       return { ...state, status: "error" };
-    case "ready":
-      return { ...state, status: "ready" };
+    case "dataReceived":
+      return { ...state, status: "ready", pokemon: action.payload };
     case "active":
       return { ...state, status: "active" };
-    case "newPokemon":
-      return { ...state, pokemon: action.payload };
+    case "newChoices":
+      return {
+        ...state,
+        choices: action.payload[0],
+        chosenPokemon: action.payload[1],
+      };
     default:
       return { ...state };
   }
 }
 
 export default function App() {
-  const [{ level, status, pokemon }, dispatch] = useReducer(
-    reducer,
-    initialState,
-  );
+  const [{ level, status, pokemon, choices, chosenPokemon }, dispatch] =
+    useReducer(reducer, initialState);
 
   useEffect(() => {
-    fetch("https://pokeapi.co/api/v2/pokemon/")
+    fetch("https://pokeapi.co/api/v2/pokemon?limit=100000")
       .then((res) => res.json())
-      .then(() => {
-        setTimeout(() => {
-          dispatch({ type: "ready" });
-        }, /* 1500 */ 0);
+      .then((data) => {
+        dispatch({ type: "dataReceived", payload: data.results });
       })
       .catch(() => console.log("Could not use API to fetch any pokemon"));
   }, []);
@@ -48,78 +56,14 @@ export default function App() {
         {status === "loading" && <Loader />}
         {status === "ready" && <StartScreen dispatch={dispatch} />}
         {status === "active" && (
-          <ActiveScreen pokemon={pokemon} dispatch={dispatch} />
+          <ActiveScreen
+            pokemon={pokemon}
+            dispatch={dispatch}
+            choices={choices}
+            chosenPokemon={chosenPokemon}
+          />
         )}
       </MainContainer>
     </div>
-  );
-}
-
-function MainContainer({ children }) {
-  return (
-    <div className="bg-blue-(--color-primary) max-w-2xl flex-1 p-4">
-      {children}
-    </div>
-  );
-}
-
-function Loader() {
-  return <div className="loader"></div>;
-}
-
-function StartScreen({ dispatch }) {
-  return (
-    <div className="flex flex-col space-y-4">
-      <img
-        src="/pokemon-logo.png"
-        alt="pokemon logo"
-        className="animate-up-down"
-      />
-      <button
-        className="btn-default mx-auto"
-        onClick={() => dispatch({ type: "active" })}
-      >
-        Click to Start
-      </button>
-    </div>
-  );
-}
-
-function ActiveScreen({ dispatch, pokemon }) {
-  useEffect(() => {
-    const randomNumber = Math.trunc(Math.random() * 1000) + 1;
-
-    async function fetchPokemon() {
-      try {
-        const res = await fetch(
-          `https://pokeapi.co/api/v2/pokemon/${randomNumber}`,
-        );
-        if (!res.ok) throw new Error("Could not fetch Pokemon");
-        const data = await res.json();
-        console.log(data);
-        dispatch({ type: "newPokemon", payload: data });
-      } catch (err) {
-        console.log(err.message);
-      }
-    }
-
-    fetchPokemon();
-  }, [dispatch]);
-
-  return (
-    pokemon && (
-      <div className="flex flex-col justify-center bg-slate-950/5">
-        <div className="mx-auto">
-          <img
-            src={pokemon.sprites.back_default}
-            alt="pokemon_image"
-            className="active:animate-shake"
-          />
-        </div>
-        <div className="flex">
-          <input type="text" className="bg-white outline-0" />
-        </div>
-      </div>
-    )
   );
 }
