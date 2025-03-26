@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { NUMBER_OF_CHOICES } from "./App";
 import { Loader } from "./Loader";
 import { PokemonDisplay } from "./PokemonDisplay";
+import Choices from "./Choices";
 
 export function ActiveScreen({ pokemon, dispatch, choices, chosenPokemon }) {
   //Creating choices
@@ -26,8 +27,9 @@ export function ActiveScreen({ pokemon, dispatch, choices, chosenPokemon }) {
   return choices === null ? (
     <Loader />
   ) : (
-    <div className="flex flex-col justify-center">
+    <div className="flex h-[var(--h-game-container)] max-h-dvh flex-col justify-between">
       <PokemonDisplay chosenPokemon={chosenPokemon} />
+      <Choices choices={choices} />
     </div>
   );
 }

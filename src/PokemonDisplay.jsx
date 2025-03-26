@@ -19,7 +19,7 @@ export function PokemonDisplay({ chosenPokemon }) {
       <img
         src={pokemonData.sprites.front_default}
         alt="pokemon_image"
-        className="min-h-40 cursor-pointer duration-200 hover:scale-105 active:scale-90"
+        className="min-h-36 cursor-pointer duration-200 hover:scale-105 active:scale-90"
       />
     </div>
   );

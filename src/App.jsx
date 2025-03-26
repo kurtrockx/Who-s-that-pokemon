@@ -51,7 +51,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-slate-500">
+    <div className="flex min-h-screen items-center justify-center bg-gray-700">
       <MainContainer>
         {status === "loading" && <Loader />}
         {status === "ready" && <StartScreen dispatch={dispatch} />}

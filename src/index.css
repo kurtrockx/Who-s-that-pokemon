@@ -3,6 +3,8 @@
 @theme {
   --color-primary: #ffcc00;
   --color-secondary: #0066b3;
+
+  --h-game-container: 420px;
 }
 
 @layer base {
