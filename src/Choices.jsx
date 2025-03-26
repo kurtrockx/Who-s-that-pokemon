@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-function Choices({ choices }) {
+function Choices({ choices, chosenPokemon }) {
   const [answer, setAnswer] = useState(null);
+ 
+  useEffect(() => {
+    
+  }, [answer])
 
   const formatName = choices
     .map((c) => c.name.split("-").slice(0, 1))
@@ -12,9 +16,13 @@ function Choices({ choices }) {
 
   return (
     <div className="flex flex-col gap-4">
-      {formatName.map((name) => (
-        <button className="btn-default text-2xl" key={name}>
-          {name}
+      {choices.map((choice, index) => (
+        <button
+          onClick={() => setAnswer(choice)}
+          className={`btn-default text-2xl ${answer ? (chosenPokemon.name === choice.name ? "bg-primary text-secondary" : "") : ""}`}
+          key={choice.name}
+        >
+          {formatName[index]}
         </button>
       ))}
     </div>

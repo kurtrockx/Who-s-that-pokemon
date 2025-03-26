@@ -8,6 +8,7 @@ const initialState = {
   //loading, ready, active, finished, reset
   status: "loading",
   level: 1,
+  points: 0,
 
   pokemon: null,
   choices: null,
@@ -61,6 +62,7 @@ export default function App() {
             dispatch={dispatch}
             choices={choices}
             chosenPokemon={chosenPokemon}
+            level={level}
           />
         )}
       </MainContainer>
