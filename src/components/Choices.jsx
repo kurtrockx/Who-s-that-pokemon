@@ -40,7 +40,7 @@ function Choices({ choices, chosenPokemon, dispatch, level }) {
         className={`btn-default ml-auto w-max ${existingAnswer ? "block" : "cursor-default opacity-0"}`}
         onClick={handleNextLevel}
       >
-        Next Level
+        {level === 20 ? "Finish" : "Next Level"}
       </button>
     </div>
   );

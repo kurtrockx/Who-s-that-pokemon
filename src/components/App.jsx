@@ -53,6 +53,7 @@ function reducer(state, action) {
         ...initialState,
         status: "ready",
         pokemon: state.pokemon,
+        highScore: state.highScore,
       };
     default:
       return { ...state };
