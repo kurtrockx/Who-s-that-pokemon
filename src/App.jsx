@@ -4,6 +4,7 @@ import { StartScreen } from "./StartScreen";
 import { Loader } from "./Loader";
 import { MainContainer } from "./MainContainer";
 import { ProgressBar } from "./ProgressBar";
+import FinishScreen from "./FinishScreen";
 
 const initialState = {
   //loading, ready, active, finished, reset
@@ -47,6 +48,12 @@ function reducer(state, action) {
         highScore:
           state.points > state.highScore ? state.points : state.highScore,
       };
+    case "reset":
+      return {
+        ...initialState,
+        status: "ready",
+        pokemon: state.pokemon,
+      };
     default:
       return { ...state };
   }
@@ -54,7 +61,16 @@ function reducer(state, action) {
 
 export default function App() {
   const [
-    { level, status, pokemon, choices, chosenPokemon, endLevel, points },
+    {
+      level,
+      status,
+      pokemon,
+      choices,
+      chosenPokemon,
+      endLevel,
+      points,
+      highScore,
+    },
     dispatch,
   ] = useReducer(reducer, initialState);
 
@@ -83,6 +99,13 @@ export default function App() {
               level={level}
             />
           </>
+        )}
+        {status === "finished" && (
+          <FinishScreen
+            dispatch={dispatch}
+            points={points}
+            highScore={highScore}
+          />
         )}
       </MainContainer>
     </div>
