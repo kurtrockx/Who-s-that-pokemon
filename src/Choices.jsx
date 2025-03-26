@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 function Choices({ choices, chosenPokemon, dispatch }) {
   const [answer, setAnswer] = useState(null);
+  const existingAnswer = answer !== null;
 
   function handleNextLevel() {
     dispatch({ type: "nextLevel" });
@@ -9,8 +10,9 @@ function Choices({ choices, chosenPokemon, dispatch }) {
   }
 
   useEffect(() => {
-    if (answer === null) return;
-  }, [answer]);
+    if (answer === null || answer !== chosenPokemon) return;
+    dispatch({ type: "plusPoints" });
+  }, [answer, chosenPokemon, dispatch]);
 
   const formatName = choices
     .map((c) => c.name.split("-").slice(0, 1))
@@ -24,8 +26,9 @@ function Choices({ choices, chosenPokemon, dispatch }) {
       {choices.map((choice, index) => (
         <button
           onClick={() => setAnswer(choice)}
-          className={`btn-default text-2xl ${answer ? (chosenPokemon.name === choice.name ? "bg-primary text-secondary" : "") : ""}`}
+          className={`btn-default text-2xl ${existingAnswer && chosenPokemon.name === choice.name ? "bg-primary text-secondary" : ""} ${existingAnswer && "cursor-not-allowed"}`}
           key={choice.name}
+          disabled={answer !== null}
         >
           {formatName[index]}
         </button>

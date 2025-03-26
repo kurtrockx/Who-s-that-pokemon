@@ -9,6 +9,7 @@ const initialState = {
   status: "loading",
   level: 1,
   points: 0,
+  highScore: 10,
 
   pokemon: null,
   choices: null,
@@ -34,7 +35,16 @@ function reducer(state, action) {
         chosenPokemon: action.payload[1],
       };
     case "nextLevel":
-      return { ...state, level: state.level + 1 };
+      return { ...state, level: state.level + 1, choices: null };
+    case "plusPoints":
+      return { ...state, points: state.points + 10 };
+    case "finished":
+      return {
+        ...state,
+        status: "finished",
+        highScore:
+          state.points > state.highScore ? state.points : state.highScore,
+      };
     default:
       return { ...state };
   }

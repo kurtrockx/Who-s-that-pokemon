@@ -30,16 +30,16 @@ export function ActiveScreen({
     });
   }, [pokemon, dispatch, level]);
 
-  return choices === null ? (
-    <Loader />
-  ) : (
-    <div className="flex h-[var(--h-game-container)] max-h-dvh flex-col justify-between">
-      <PokemonDisplay chosenPokemon={chosenPokemon} />
-      <Choices
-        choices={choices}
-        chosenPokemon={chosenPokemon}
-        dispatch={dispatch}
-      />
-    </div>
+  return (
+    choices !== null && (
+      <div className="flex h-[var(--h-game-container)] max-h-dvh flex-col justify-between gap-2">
+        <PokemonDisplay chosenPokemon={chosenPokemon} />
+        <Choices
+          choices={choices}
+          chosenPokemon={chosenPokemon}
+          dispatch={dispatch}
+        />
+      </div>
+    )
   );
 }

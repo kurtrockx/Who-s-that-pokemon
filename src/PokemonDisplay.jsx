@@ -15,7 +15,7 @@ export function PokemonDisplay({ chosenPokemon }) {
   return pokemonData === null ? (
     <Loader />
   ) : (
-    <div className="mx-auto block duration-500 starting:scale-20">
+    <div className="mx-auto block h-full duration-500 starting:scale-20">
       <img
         src={pokemonData.sprites.front_default}
         alt="pokemon_image"
