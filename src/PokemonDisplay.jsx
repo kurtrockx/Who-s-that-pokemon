@@ -1,8 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Loader } from "./Loader";
 
 export function PokemonDisplay({ chosenPokemon }) {
   const [pokemonData, setPokemonData] = useState(null);
+
+  const pokemonCry = useRef(null);
+
+  function handleCry() {
+    pokemonCry.current.play();
+  }
 
   useEffect(() => {
     if (chosenPokemon === null) return;
@@ -20,7 +26,9 @@ export function PokemonDisplay({ chosenPokemon }) {
         src={pokemonData.sprites.front_default}
         alt="pokemon_image"
         className="min-h-36 cursor-pointer duration-200 hover:scale-105 active:scale-90"
+        onClick={handleCry}
       />
+      <audio src={pokemonData.cries.latest} ref={pokemonCry}></audio>
     </div>
   );
 }
