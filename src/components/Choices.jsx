@@ -36,7 +36,7 @@ function Choices({ choices, chosenPokemon, dispatch, level }) {
       {choices.map((choice, index) => (
         <button
           onClick={() => setAnswer(choice)}
-          className={`btn-default text-2xl ${existingAnswer && chosenPokemon.name === choice.name ? "bg-primary text-secondary" : ""} ${existingAnswer && "cursor-not-allowed"}`}
+          className={`btn-default text-2xl ${existingAnswer && chosenPokemon.name === choice.name ? "bg-primary text-secondary opacity-100" : ""} ${existingAnswer && "cursor-not-allowed opacity-50"}`}
           key={choice.name}
           disabled={answer !== null}
         >
