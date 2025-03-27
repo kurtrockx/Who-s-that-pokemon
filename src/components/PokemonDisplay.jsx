@@ -39,7 +39,7 @@ export function PokemonDisplay({ chosenPokemon }) {
           className="h-36 cursor-pointer duration-100 hover:scale-105 active:scale-90"
           onClick={handleCry}
         />
-        <p className="pointer-events-none absolute bottom-4 left-0 origin-left sm:-translate-x-100 rounded-xl border-2 bg-black px-2 py-px text-xs text-white delay-100 duration-200 ease-in-out group-hover:translate-0">
+        <p className="pointer-events-none absolute bottom-4 left-0 origin-left rounded-xl border-2 bg-black px-2 py-px text-xs text-white delay-100 duration-200 ease-in-out group-hover:translate-0 sm:-translate-x-100 max-sm:opacity-70 max-sm:text-[.5rem]">
           click for cry
         </p>
       </div>
