@@ -25,10 +25,13 @@ function Choices({ choices, chosenPokemon, dispatch, level }) {
   }, [answer, chosenPokemon, dispatch]);
 
   const formatName = choices
-    .map((c) => c.name.split("-").slice(0, 1))
-    .map(
-      (name) =>
-        `${name[0].slice(0, 1).toUpperCase()}${name[0].slice(1).toLowerCase()}`,
+    .map((c) =>
+      c.name === "mr-mime" ? "Mr Mime" : c.name.split("-").slice(0, 1),
+    )
+    .map((name) =>
+      name === "Mr Mime"
+        ? "Mr Mime"
+        : `${name[0].slice(0, 1).toUpperCase()}${name[0].slice(1).toLowerCase()}`,
     );
 
   return (
