@@ -14,33 +14,19 @@ export function ActiveScreen({
   //Creating choices
   useEffect(() => {
     const choices = [];
+    const chosen = Math.trunc(Math.random() * NUMBER_OF_CHOICES);
 
-    async function validateChosen() {
-      try {
-        let valid = false;
-        let chosen = Math.trunc(Math.random() * NUMBER_OF_CHOICES);
-
-        while (valid === false) {
-          const res = await fetch(pokemon[chosen].url);
-          if (!res.ok) throw new Error("could not fetch the chosen pokemon");
-          const data = await res.json();
-          if (data.sprites.front_default === null) {
-            continue;
-          } else {
-            valid = true;
-          }
-        }
-        return chosen;
-      } catch (err) {
-        console.log(err.message);
-      }
-    }
-
-    async function defineChoices() {
-      const chosen = await validateChosen();
-
+    function defineChoices() {
       for (let x = 0; x < NUMBER_OF_CHOICES; x++) {
         const randomNumber = Math.trunc(Math.random() * pokemon.length);
+
+        if (
+          pokemon[randomNumber].name.includes('miraidon') ||
+          pokemon[randomNumber].name.includes('koraidon')
+        ) {
+          x--;
+          continue;
+        }
 
         x === chosen &&
           choices.push({ ...pokemon[randomNumber], correctAnswer: true });
