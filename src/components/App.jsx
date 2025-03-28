@@ -14,7 +14,8 @@ const initialState = {
   level: 1,
   endLevel: 20,
   points: 0,
-  highScore: 10,
+  highScore: { initials: "KURT", points: 50 },
+  newHighscore: false,
 
   pokemon: null,
   choices: null,
@@ -47,15 +48,27 @@ function reducer(state, action) {
       return {
         ...state,
         status: "finished",
-        highScore:
-          state.points > state.highScore ? state.points : state.highScore,
+        newHighscore: state.points > state.highScore.points ? true : false,
+        highScore: {
+          initials:
+            state.points > state.highScore.points
+              ? "ANON"
+              : state.highScore.initials,
+          points:
+            state.points > state.highScore.points
+              ? state.points
+              : state.highScore.points,
+        },
       };
     case "reset":
       return {
         ...initialState,
         status: "ready",
         pokemon: state.pokemon,
-        highScore: state.highScore,
+        highScore: {
+          points: state.newHighscore ? state.points : state.highScore.points,
+          initials: action.payload,
+        },
       };
     default:
       return { ...state };
@@ -73,6 +86,7 @@ export default function App() {
       endLevel,
       points,
       highScore,
+      newHighscore,
     },
     dispatch,
   ] = useReducer(reducer, initialState);
@@ -110,6 +124,7 @@ export default function App() {
             dispatch={dispatch}
             points={points}
             highScore={highScore}
+            newHighscore={newHighscore}
           />
         )}
       </MainContainer>
