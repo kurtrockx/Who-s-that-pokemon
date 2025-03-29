@@ -4,9 +4,9 @@ A fun and interactive web app where you can guess Pokémon based on their silhou
 
 ## 🚀 Live Demo
 Check it out here: [Who's That Pokémon?](https://whosthatpokemon-kurtrdb.netlify.app/)
-![Alt Text](https://ibb.co/Lz45Tpdd)
-![Alt Text](https://ibb.co/fd7cRsqq)
-![Alt Text](https://ibb.co/LDwKm4tX)
+![Alt Text](https://i.ibb.co/99RtxYHH/start.png)
+![Alt Text](https://i.ibb.co/DPXdh3CH/gameplay.png)
+![Alt Text](https://i.ibb.co/8gVh3HNN/finish.png)
 
 
 ## 🛠️ Technologies Used
