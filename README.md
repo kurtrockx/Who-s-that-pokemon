@@ -36,7 +36,3 @@ To set up the project locally, follow these steps:
 
 ## 🤝 Contributing
 Pull requests are welcome! Feel free to open an issue if you find a bug or have a feature request.
-
-## 📜 License
-This project is open-source and available under the [MIT License](LICENSE).
-
