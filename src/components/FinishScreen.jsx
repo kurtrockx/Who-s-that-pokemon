@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import finishLogo from '../assets/finish.png'
 
 function FinishScreen({ dispatch, points, highScore, newHighscore }) {
   const [highScoreName, setHighScoreName] = useState("");
@@ -16,7 +17,7 @@ function FinishScreen({ dispatch, points, highScore, newHighscore }) {
 
   return (
     <div className="mx-auto max-w-lg">
-      <img src="/finish.png" alt="finish" className="animate-up-down" />
+      <img src={finishLogo} alt="finish" className="animate-up-down" />
       <p className="text-center font-bold text-white">
         Score: <span className="text-primary"> {points}</span>
       </p>
