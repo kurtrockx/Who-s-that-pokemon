@@ -4,6 +4,8 @@ A fun and interactive web app where you can guess Pokémon based on their silhou
 
 ## 🚀 Live Demo
 Check it out here: [Who's That Pokémon?](https://whosthatpokemon-kurtrdb.netlify.app/)
+![Alt Text](https://i.ibb.co/99RtxYHH/start.png)
+
 
 ## 🛠️ Technologies Used
 - **Vite** - Fast and optimized development environment
@@ -34,7 +36,3 @@ To set up the project locally, follow these steps:
 
 ## 🤝 Contributing
 Pull requests are welcome! Feel free to open an issue if you find a bug or have a feature request.
-
-## 📜 License
-This project is open-source and available under the [MIT License](LICENSE).
-
